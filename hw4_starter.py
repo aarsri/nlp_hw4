@@ -52,6 +52,9 @@ class LanguageModel:
 
         return next_token
 
+    # The `generate()` method below is NOT HuggingFace's built-in `.generate()`.
+    # It simply runs our custom decoding loop using your implementation of greedy search, sampling, top-k, and top-p. 
+    # You may NOT use `model.generate()` from the HuggingFace Transformers library.
     def generate(self, prompt, max_new_tokens=40):
         """Generate a continuation from a given prompt."""
         state = self.start(prompt)
@@ -64,5 +67,5 @@ if __name__ == '__main__':
     with open('short_context_data.txt') as f:
         contexts = [line.strip() for line in f if line.strip()]
     # TODO: run the model with different decoding methods and print the outputs (as outlined in the assignment)
-    # model = LanguageModel(mode=...)
-    # model.generate(...)
+    # lm = LanguageModel(mode=...)
+    # lm.generate(...)
